@@ -1,24 +1,16 @@
 ﻿using System;
 namespace TechJobsOO
 {
-    public class Employer
+    public class Employer : Entity
     {
-        public int Id { get; }
-        private static int nextId = 1;
-        public string Value { get; set; }
+        public string? Value { get; set; }
 
-        public Employer()
-        {
-            Id = nextId;
-            nextId++;
-        }
-
-        public Employer(string value) : this()
+        public Employer(string value) : base()
         {
             Value = value;
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             return obj is Employer employer &&
                    Id == employer.Id;
@@ -31,6 +23,9 @@ namespace TechJobsOO
 
         public override string ToString()
         {
+            if (string.IsNullOrEmpty(Value))
+                return "Data not available";
+
             return Value;
         }
     }

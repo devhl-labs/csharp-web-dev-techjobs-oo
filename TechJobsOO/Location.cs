@@ -1,21 +1,16 @@
 ﻿using System;
 namespace TechJobsOO
 {
-    public class Location
+    public class Location : Entity
     {
-        public int Id { get; }
-        private static int nextId = 1;
-        public string Value { get; set; }
+        public string? Value { get; set; }
 
-        public Location()
+        public Location(string value) : base()
         {
-            Id = nextId;
-            nextId++;
+            Value = value;
         }
 
-        // TODO: Add a second constructor to this class that uses the Location() constructor and sets the value of the value field.
-
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             return obj is Location location &&
                    Id == location.Id;
@@ -28,6 +23,9 @@ namespace TechJobsOO
 
         public override string ToString()
         {
+            if (string.IsNullOrEmpty(Value))
+                return "Data not available";
+
             return Value;
         }
     }
